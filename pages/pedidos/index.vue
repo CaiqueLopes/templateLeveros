@@ -44,7 +44,7 @@
 
         <template slot="expand" slot-scope="props">
           <v-card flat>
-            <v-card-text>Peek-a-boo!</v-card-text>
+            <v-card-text>Teste</v-card-text>
           </v-card>
         </template>
         <v-alert slot="no-results" :value="true" color="error" icon="warning">
