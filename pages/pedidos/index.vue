@@ -2,6 +2,7 @@
   <v-card>
     <header>
       <v-card-title>
+        <!--AJUSTAR COM A CSS TAG CORRETA>>>>> <v-flex tag="h1" class="headline">Exemplo</v-flex> -->
         <h1 style="color:#4a99ca;">Pedidos</h1>
       </v-card-title>
       <v-container fluid grid-list-xl>
@@ -41,14 +42,64 @@
             <td class="text-xs-right">{{ props.item.iron }}</td>
           </tr>
         </template>
-
         <template slot="expand" slot-scope="props">
           <v-card flat>
-            <v-card-text>Teste</v-card-text>
+            <v-card-text>
+              <div v-for="item in dados" :key="item.title">
+                <v-layout row>
+                  <v-flex>
+                    <v-menu
+                      v-model="menu"
+                      :close-on-content-click="false"
+                      :nudge-width="100"
+                      offset-x
+                    >
+                      <v-btn slot="activator" color="info" round class="white--text">mostrar mais</v-btn>
+                      <v-card>
+                        <v-layout align-center row spacer>
+                          <v-flex xs2 sm2 md2>
+                            <v-avatar slot="activator">
+                              <v-icon>autorenew</v-icon>
+                            </v-avatar>
+                          </v-flex>
+                          <v-flex sm10 md10>
+                            <span class="black--text">&nbsp; Reprocessar</span>
+                          </v-flex>
+                        </v-layout>
+                        <v-layout align-center row spacer>
+                          <v-flex xs2 sm2 md2>
+                            <v-avatar slot="activator">
+                              <v-icon>autorenew</v-icon>
+                            </v-avatar>
+                          </v-flex>
+                          <v-flex sm10 md10>
+                            <span class="black--text">&nbsp; Ignorar divergência e reprocessar</span>
+                          </v-flex>
+                        </v-layout>
+                      </v-card>
+                    </v-menu>
+                  </v-flex>
+                  <v-flex>
+                    <v-card-text>
+                      <a href="#">{{ item.order }}</a>
+                    </v-card-text>
+                  </v-flex>
+                  <v-flex>
+                    <v-card-text>{{ item.status }}</v-card-text>
+                  </v-flex>
+                  <v-flex>
+                    <v-card-text>{{ item.lastUpdate }}</v-card-text>
+                  </v-flex>
+                  <v-flex justify-end>
+                    <v-icon v-html="item.ico"></v-icon>
+                  </v-flex>
+                </v-layout>
+              </div>
+            </v-card-text>
           </v-card>
         </template>
         <v-alert slot="no-results" :value="true" color="error" icon="warning">
-          Nenhum resultado encontrado para "{{ search }}".
+          Nenhum resultado encontrado para "{{search}}".
           <br>:(
         </v-alert>
       </v-data-table>
@@ -172,21 +223,35 @@ export default {
           protein: 7,
           iron: '6%'
         }
+      ],
+      dados: [
+        {
+          ico: 'check_circle_outline',
+          order: 'PEDIDO 0000-00',
+          buyer: 'E-MAIL DO COMPRADOR',
+          status: 'Processo com sucesso',
+          lastUpdate: 'Data do ultimo processamento'
+        } /*,
+        {
+          ico: 'error_outline',
+          order: 'PEDIDO 1111-00',
+          buyer: 'E-MAIL DO COMPRADOR',
+          status: 'Erro',
+          lastUpdate: 'Data do ultimo processamento'
+        }*/
       ]
     }
   },
   computed: {
-        pages() {
-          if (
-            this.pagination.rowsPerPage == null ||
-            this.pagination.totalItems == null
-          )
-            return 0
+    pages() {
+      if (
+        this.pagination.rowsPerPage == null ||
+        this.pagination.totalItems == null
+      )
+        return 0
 
-          return Math.ceil(
-            this.pagination.totalItems / this.pagination.rowsPerPage
-          )
-        }
-      }
+      return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
+    }
+  }
 }
 </script>
