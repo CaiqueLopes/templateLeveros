@@ -28,18 +28,17 @@
         :headers="headers"
         :items="desserts"
         :expand="expand"
-        item-key="name"
+        item-key="order"
         :search="search"
         :pagination.sync="pagination"
       >
         <template slot="items" slot-scope="props">
           <tr @click="props.expanded = !props.expanded">
-            <td>{{ props.item.name }}</td>
-            <td class="text-xs-right">{{ props.item.calories }}</td>
-            <td class="text-xs-right">{{ props.item.fat }}</td>
-            <td class="text-xs-right">{{ props.item.carbs }}</td>
-            <td class="text-xs-right">{{ props.item.protein }}</td>
-            <td class="text-xs-right">{{ props.item.iron }}</td>
+            <td><a href="#">{{ props.item.order }}</a></td>
+            <td class="text-xs-right">{{ props.item.chanel }}</td>
+            <td class="text-xs-right">{{ props.item.status }}</td>
+            <td class="text-xs-right">{{ props.item.lastUpdate }}</td>
+            <td class="text-xs-right"><v-icon>{{ props.item.ico }}</v-icon></td>
           </tr>
         </template>
         <template slot="expand" slot-scope="props">
@@ -81,11 +80,11 @@
                   </v-flex>
                   <v-flex>
                     <v-card-text>
-                      <a href="#">{{ item.order }}</a>
+                  
                     </v-card-text>
                   </v-flex>
                   <v-flex>
-                    <v-card-text>{{ item.status }}</v-card-text>
+                    <v-card-text>{{ item.err }}</v-card-text>
                   </v-flex>
                   <v-flex>
                     <v-card-text>{{ item.lastUpdate }}</v-card-text>
@@ -121,116 +120,102 @@ export default {
       expand: false,
       headers: [
         {
-          text: 'Nome',
-          align: 'left',
-          sortable: false,
-          value: 'name'
+          text: 'Pedido',
+          align: 'center',
+          sortable: true,
+          value: 'order'
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }
+        { text: 'Canal', align: 'center', value: 'chanel' },
+        { text: 'Status', align: 'center', value: 'status' },
+        { text: 'Data', align: 'center', value: 'lastUpdate' },
+        { text: '.', align: 'center', value: 'ico' }
       ],
       desserts: [
         {
           value: false,
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%'
+          order: 'PEDIDO 0000-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%'
+          order: 'PEDIDO 3569-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%'
+          order: 'PEDIDO 8627-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%'
+          order: 'PEDIDO 0547-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%'
+          order: 'PEDIDO 1324-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%'
+          order: 'PEDIDO 7722-10',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%'
+          order: 'PEDIDO 3044-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%'
+          order: 'PEDIDO 2010-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%'
+          order: 'PEDIDO 0000-01',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         },
         {
           value: false,
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%'
+          order: 'PEDIDO 1010-00',
+          chanel: 'Canal da compra',
+          status: 'success',
+          lastUpdate: 'Data do ultimo processamento',
+          ico: 'check_circle_outline'
         }
       ],
       dados: [
         {
-          ico: 'check_circle_outline',
-          order: 'PEDIDO 0000-00',
-          buyer: 'E-MAIL DO COMPRADOR',
-          status: 'Processo com sucesso',
-          lastUpdate: 'Data do ultimo processamento'
+          order:'numero do pedido',
+          err: 'Tipo do erro caso tenha algum erro com todos os detalhes'
         } /*,
         {
           ico: 'error_outline',

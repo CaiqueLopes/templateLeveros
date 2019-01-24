@@ -18,6 +18,9 @@
       </v-btn>
       <v-toolbar-title v-text="logo"/>
       <div class="spacer"></div>
+      <v-btn icon>
+        <v-icon>search</v-icon>
+      </v-btn>
       <v-menu bottom left>
         <v-btn slot="activator" dark icon>
           <v-icon>more_vert</v-icon>
